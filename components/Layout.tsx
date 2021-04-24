@@ -3,16 +3,15 @@ import Head from 'next/head';
 import styles from './layout.module.css';
 import Link from 'next/link';
 import { CardLink } from './Styles';
+import { NextPage } from 'next';
 
-export default function Layout({
-  children,
-  home,
-  title,
-}: {
+interface Props {
   children: React.ReactNode;
   home?: boolean;
   title: string;
-}) {
+}
+
+const Layout: NextPage<Props> = ({ children, home, title }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -29,4 +28,6 @@ export default function Layout({
       )}
     </div>
   );
-}
+};
+
+export default Layout;

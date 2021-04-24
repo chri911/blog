@@ -16,8 +16,9 @@ import {
   CardLink,
   CardButton,
 } from '../components/Styles';
+import { NextPage } from 'next';
 
-export default function Home() {
+const Home: NextPage = () => {
   const dispatch = useDispatch();
 
   const state = useSelector((state: RootState) => state.posts);
@@ -35,22 +36,26 @@ export default function Home() {
       <section>
         <Title>Posts</Title>
         <Cards>
-          {state.map((post) => (
-            <CardWrapper key={post.id}>
-              <CardHeader>
-                <CardHeading>{post.title}</CardHeading>
-              </CardHeader>
-              <CardBody>
-                <CardText>{post.body}</CardText>
-                <Link href={`/posts/[postId]`} as={`/posts/${post.id}`}>
-                  <CardLink>go to the Post page</CardLink>
-                </Link>
-              </CardBody>
-            </CardWrapper>
-          ))}
+          {state
+            .sort((prevPost, nextPost) => nextPost.id - prevPost.id)
+            .map((post) => (
+              <CardWrapper key={post.id}>
+                <CardHeader>
+                  <CardHeading>{post.title}</CardHeading>
+                </CardHeader>
+                <CardBody>
+                  <CardText>{post.body}</CardText>
+                  <Link href={`/posts/[postId]`} as={`/posts/${post.id}`}>
+                    <CardLink>go to the Post page</CardLink>
+                  </Link>
+                </CardBody>
+              </CardWrapper>
+            ))}
         </Cards>
         <CardButton onClick={handleClick}>Add new post</CardButton>
       </section>
     </Layout>
   );
-}
+};
+
+export default Home;

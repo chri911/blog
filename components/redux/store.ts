@@ -40,7 +40,6 @@ const reducer = (state = initial, action) => {
   }
 };
 
-const makeStore = (context) =>
-  createStore(reducer, applyMiddleware(thunkMiddleware));
+const makeStore = () => createStore(reducer, applyMiddleware(thunkMiddleware));
 
 export const wrapper = createWrapper(makeStore, { debug: true });

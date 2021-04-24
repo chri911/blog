@@ -1,7 +1,21 @@
 import axios from 'axios';
 import * as types from './types';
+import { AnyAction } from 'redux';
+import { RootState } from './store';
+import { ThunkAction } from 'redux-thunk';
 
-export const fetchPosts = () => {
+type PostData = {
+  body: string;
+  title: string;
+  id: number;
+};
+
+export const fetchPosts = (): ThunkAction<
+  void,
+  RootState,
+  unknown,
+  AnyAction
+> => {
   return (dispatch) => {
     dispatch(getPostStarted());
 
@@ -20,19 +34,22 @@ const getPostStarted = () => ({
   type: types.GET_POST_STARTED,
 });
 
-const getPostSuccess = (post) => ({
+const getPostSuccess = (post: PostData) => ({
   type: types.GET_POST_SUCCESS,
   posts: post,
 });
 
-const getPostFailure = (error) => ({
+const getPostFailure = (error: string) => ({
   type: types.GET_POST_FAILURE,
   payload: {
     error,
   },
 });
 
-export const addPost = (title, body) => {
+export const addPost = (
+  title: string,
+  body: string,
+): ThunkAction<void, RootState, unknown, AnyAction> => {
   return (dispatch) => {
     dispatch(addPostStarted());
 
@@ -50,7 +67,7 @@ export const addPost = (title, body) => {
   };
 };
 
-const addPostSuccess = (post) => ({
+const addPostSuccess = (post: PostData) => ({
   type: types.ADD_POST_SUCCESS,
   payload: {
     ...post,
@@ -61,7 +78,7 @@ const addPostStarted = () => ({
   type: types.ADD_POST_STARTED,
 });
 
-const addPostFailure = (error) => ({
+const addPostFailure = (error: string) => ({
   type: types.ADD_POST_FAILURE,
   payload: {
     error,

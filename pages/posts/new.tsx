@@ -8,8 +8,9 @@ import {
   StyledTextarea,
   Title,
 } from '../../components/Styles';
+import { NextPage } from 'next';
 
-const New = () => {
+const New: NextPage = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [isAdded, setIsAdded] = useState(false);
