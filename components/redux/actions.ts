@@ -1,8 +1,6 @@
 import axios from 'axios';
 import * as types from './types';
 
-export type RootState = ReturnType<typeof reducer>;
-
 export const fetchPosts = () => {
   return (dispatch) => {
     dispatch(getPostStarted());

@@ -2,7 +2,8 @@ import Layout from '../components/Layout';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchPosts, RootState } from '../components/redux/actions';
+import { fetchPosts } from '../components/redux/actions';
+import { RootState } from '../components/redux/store';
 import Router from 'next/router';
 import {
   Title,

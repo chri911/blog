@@ -3,6 +3,8 @@ import thunkMiddleware from 'redux-thunk';
 import * as types from './types';
 import { createWrapper } from 'next-redux-wrapper';
 
+export type RootState = ReturnType<typeof reducer>;
+
 const initial = {
   posts: [],
   error: null,
